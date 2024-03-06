@@ -1,4 +1,4 @@
-# 02122-TETATET-CACHET
+# 02122-DigitalHealth
 
 ## Description
 - [ ] Insert description
@@ -20,18 +20,3 @@
 
 ## Project status
 - [ ] Stuff
-
-***
-## Getting started
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-
-***
