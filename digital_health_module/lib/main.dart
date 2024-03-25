@@ -11,7 +11,6 @@ import 'package:health/health.dart';
 part 'src/sensing_bloc.dart';
 part 'src/sensing.dart';
 part 'src/study_protocol_manager.dart';
-part 'src/registry_manager.dart';
 
 void main() async {
   CarpMobileSensing.ensureInitialized();

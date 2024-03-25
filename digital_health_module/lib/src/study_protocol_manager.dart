@@ -91,7 +91,6 @@ class LocalStudyProtocolManager implements StudyProtocolManager {
             HealthDataType.BASAL_ENERGY_BURNED,
             HealthDataType.WEIGHT,
             HealthDataType.SLEEP_SESSION,
-            HealthDataType.ELECTRODERMAL_ACTIVITY,
           ])
         ]),
         healthService);
