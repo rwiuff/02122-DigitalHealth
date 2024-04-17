@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:digital_health_module/main.dart' as digital_health_module;
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await digital_health_module.initializeModule();  // Correctly awaiting the async function
+    runApp(const MyApp());
+  } catch (e) {
+    // Properly handle any initialization errors
+    print('Failed to initialize digital health module: $e');
+  }
 }
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
