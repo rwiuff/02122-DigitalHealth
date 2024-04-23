@@ -8,7 +8,6 @@ void main() async {
     runApp(const MyApp());
   } catch (e) {
     // Properly handle any initialization errors
-    print('Failed to initialize digital health module: $e');
   }
 }
 
