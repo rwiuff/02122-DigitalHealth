@@ -1,23 +1,29 @@
 part of '../main.dart';
 
-class Data_endpoint {
-  static const String dataIdKey = 'data_id';
-  static const String dataDeploymentIdKey = 'data_deployment_id';
-  static const String dataRoleNameKey = 'device_role_name';
+//EXAMPLE WITH Memory 
+//https://github.com/cph-cachet/carp.sensing-flutter/wiki/5.-Extending-CARP-Mobile-Sensing
 
-  String? _dataId;
-  String? _dataDeploymentId;
-  String? _deviceRoleName;
+/// Holds information about free memory on the phone.
+@JsonSerializable(fieldRename: FieldRename.none, includeIfNull: false)
+class FreeMemory extends Data {
+  static const dataType = DeviceSamplingPackage.FREE_MEMORY;
 
+  /// Amount of free physical memory in bytes.
+  int? freePhysicalMemory;
 
-   String? get dataid =>
-      (_dataId ??= Settings().preferences?.getString(dataIdKey));
+  /// Amount of free virtual memory in bytes.
+  int? freeVirtualMemory;
 
-  String? set dataDeploymentId =>
-    (_dataDeploymentID ??= Settings().preferences?.getString(_dataDeploymentId));
-  }
+  FreeMemory([this.freePhysicalMemory, this.freeVirtualMemory]) : super();
 
-  void data_endpoint() {
-    return 
-  }
+  @override
+  Function get fromJsonFunction => _$FreeMemoryFromJson;
+  factory FreeMemory.fromJson(Map<String, dynamic> json) =>
+      FromJsonFactory().fromJson(json) as FreeMemory;
+  @override
+  Map<String, dynamic> toJson() => _$FreeMemoryToJson(this);
+
+  @override
+  String toString() =>
+      '${super.toString()}, physical: $freePhysicalMemory, virtual: $freeVirtualMemory';
 }
