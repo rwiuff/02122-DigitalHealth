@@ -63,4 +63,6 @@ class AppBarExample extends StatelessWidget {
       ),
     );
   }
+
+  //TODO widgets for sensing data and analysis
 }

@@ -102,4 +102,6 @@ class LocalStudyProtocolManager implements StudyProtocolManager {
   Future<bool> saveStudyProtocol(String studyId, SmartphoneStudyProtocol protocol) async {
     throw UnimplementedError();
   }
+
+  //TODO connect study_protocol_manager with data_analysis and widgets
 }
