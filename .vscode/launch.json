@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "demo_app",
+            "cwd": "demo_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "demo_app (profile mode)",
+            "cwd": "demo_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "demo_app (release mode)",
+            "cwd": "demo_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "digital_health_module",
+            "cwd": "digital_health_module",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "digital_health_module (profile mode)",
+            "cwd": "digital_health_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "digital_health_module (release mode)",
+            "cwd": "digital_health_module",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
