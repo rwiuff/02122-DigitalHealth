@@ -29,7 +29,7 @@ dependencies:
   carp_mobile_sensing: ^1.4.7
   carp_serializable: ^1.1.1
   carp_backend: ^1.4.1
-  carp_webservices: ^2.0.1
+  carp_webservices: ^3.0.1
   health: ^9.0.1
 
 dev_dependencies:
