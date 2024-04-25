@@ -27,3 +27,4 @@ class FreeMemory extends Data {
   String toString() =>
       '${super.toString()}, physical: $freePhysicalMemory, virtual: $freeVirtualMemory';
 }
+//TODO API med data
