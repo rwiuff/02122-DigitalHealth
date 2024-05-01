@@ -1,10 +1,12 @@
+// ignore_for_file: constant_identifier_names
+
 part of '../main.dart';
 
 /// This is the main Business Logic Component (BLoC) of this sensing app.
 class SensingBLoC {
-  static const String studyIdKey = 'study_id';
-  static const String studyDeploymentIdKey = 'study_deployment_id';
-  static const String deviceRoleNameKey = 'device_role_name';
+  static const String STUDY_ID_KEY = 'study_id';
+  static const String STUDY_DEPLOYMENT_ID_KEY = 'study_deployment_id';
+  static const String DEVICE_ROLE_NAME_KEY = 'device_role_name';
 
   String? _studyId;
   String? _studyDeploymentId;
@@ -22,7 +24,7 @@ class SensingBLoC {
   /// Returns the study id cached locally on the phone (if available).
   /// Returns `null` if no study is deployed (yet).
   String? get studyId =>
-      (_studyId ??= Settings().preferences?.getString(studyIdKey));
+      (_studyId ??= Settings().preferences?.getString(STUDY_ID_KEY));
 
   /// Set the study deployment id for the currently running deployment.
   /// This study deployment id will be cached locally on the phone.
@@ -32,14 +34,14 @@ class SensingBLoC {
         'Cannot set the study id to null in Settings. '
         "Use the 'eraseStudyDeployment()' method to erase study deployment information.");
     _studyId = id;
-    Settings().preferences?.setString(studyIdKey, id!);
+    Settings().preferences?.setString(STUDY_ID_KEY, id!);
   }
 
   /// The study deployment id for the currently running deployment.
   /// Returns the deployment id cached locally on the phone (if available).
   /// Returns `null` if no study is deployed (yet).
   String? get studyDeploymentId => (_studyDeploymentId ??=
-      Settings().preferences?.getString(studyDeploymentIdKey));
+      Settings().preferences?.getString(STUDY_DEPLOYMENT_ID_KEY));
 
   /// Set the study deployment id for the currently running deployment.
   /// This study deployment id will be cached locally on the phone.
@@ -49,7 +51,7 @@ class SensingBLoC {
         'Cannot set the study deployment id to null in Settings. '
         "Use the 'eraseStudyDeployment()' method to erase study deployment information.");
     _studyDeploymentId = id;
-    Settings().preferences?.setString(studyDeploymentIdKey, id!);
+    Settings().preferences?.setString(STUDY_DEPLOYMENT_ID_KEY, id!);
   }
 
   /// The device role name for the currently running deployment.
@@ -57,7 +59,7 @@ class SensingBLoC {
   /// The role name is cached locally on the phone.
   /// Returns `null` if no study is deployed (yet).
   String? get deviceRoleName => (_deviceRoleName ??=
-      Settings().preferences?.getString(deviceRoleNameKey));
+      Settings().preferences?.getString(DEVICE_ROLE_NAME_KEY));
 
   set deviceRoleName(String? roleName) {
     assert(
@@ -65,7 +67,7 @@ class SensingBLoC {
         'Cannot set device role name to null in Settings. '
         "Use the 'eraseStudyDeployment()' method to erase study deployment information.");
     _deviceRoleName = roleName;
-    Settings().preferences?.setString(deviceRoleNameKey, roleName!);
+    Settings().preferences?.setString(DEVICE_ROLE_NAME_KEY, roleName!);
   }
 
   /// Use the cached study deployment?
@@ -77,7 +79,7 @@ class SensingBLoC {
   /// Erase all study deployment information cached locally on this phone.
   Future<void> eraseStudyDeployment() async {
     _studyDeploymentId = null;
-    await Settings().preferences!.remove(studyDeploymentIdKey);
+    await Settings().preferences!.remove(STUDY_DEPLOYMENT_ID_KEY);
   }
 
   /// The [SmartphoneDeployment] deployed on this phone.
@@ -105,6 +107,26 @@ class SensingBLoC {
 
     info('$runtimeType initialized');
   }
+
+  void start() {
+    SmartPhoneClientManager().notificationController?.createNotification(
+          title: 'Sensing Started',
+          body:
+              'Data sampling is now running in the background. Click the STOP button to stop sampling again.',
+        );
+    SmartPhoneClientManager().start();
+  }
+
+  void stop() {
+    SmartPhoneClientManager().notificationController?.createNotification(
+          title: 'Sensing Stopped',
+          body:
+              'Sampling is stopped and no more data will be collected. Click the START button to restart sampling.',
+        );
+    SmartPhoneClientManager().stop();
+  }
+
+  void dispose() => SmartPhoneClientManager().dispose();
 
   /// Is sensing running, i.e. has the study executor been started?
   bool get isRunning =>

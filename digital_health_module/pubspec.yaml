@@ -31,6 +31,7 @@ dependencies:
   carp_backend: ^1.4.1
   carp_webservices: ^3.0.1
   health: ^9.0.1
+  carp_context_package: ^1.5.0
 
 dev_dependencies:
   flutter_test:
