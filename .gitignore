@@ -275,3 +275,6 @@ digital_health_module/windows/macos/Flutter/GeneratedPluginRegistrant.swift
 digital_health_module/windows/windows/flutter/generated_plugin_registrant.cc
 digital_health_module/windows/windows/flutter/generated_plugin_registrant.h
 digital_health_module/windows/windows/flutter/generated_plugins.cmake
+demo_app/windows/flutter/generated_plugins.cmake
+demo_app/windows/flutter/generated_plugin_registrant.cc
+demo_app/macos/Flutter/GeneratedPluginRegistrant.swift
