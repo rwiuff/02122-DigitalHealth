@@ -252,4 +252,11 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+
+# project-root/.gitignore
+**/generated_plugin_registrant.cc
+**/generated_plugin_registrant.h
+**/GeneratedPluginRegistrant.swift
+**/generated_plugins.cmake
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,windows,macos,dart,gradle
