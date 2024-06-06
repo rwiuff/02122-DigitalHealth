@@ -260,3 +260,18 @@ gradle-app.setting
 **/generated_plugins.cmake
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,windows,macos,dart,gradle
+demo_app/linux/flutter/generated_plugin_registrant.cc
+demo_app/linux/flutter/generated_plugin_registrant.cc
+demo_app/linux/flutter/generated_plugin_registrant.cc
+demo_app/linux/flutter/generated_plugin_registrant.cc
+demo_app/linux/flutter/generated_plugins.cmake
+demo_app/macos/Flutter/GeneratedPluginRegistrant.swift
+demo_app/windows/flutter/generated_plugin_registrant.cc
+demo_app/windows/flutter/generated_plugins.cmake
+digital_health_module/windows/linux/flutter/generated_plugin_registrant.cc
+digital_health_module/windows/linux/flutter/generated_plugin_registrant.h
+digital_health_module/windows/linux/flutter/generated_plugins.cmake
+digital_health_module/windows/macos/Flutter/GeneratedPluginRegistrant.swift
+digital_health_module/windows/windows/flutter/generated_plugin_registrant.cc
+digital_health_module/windows/windows/flutter/generated_plugin_registrant.h
+digital_health_module/windows/windows/flutter/generated_plugins.cmake
