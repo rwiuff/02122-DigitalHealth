@@ -1,7 +1,6 @@
 // lib/src/sensing_bloc/sensing_bloc.dart
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_mvp/src/sensing.dart';
 import 'package:package_mvp/src/carp_service.dart';
 
@@ -94,4 +93,14 @@ class SensingBLoC {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove(key);
   }
+}
+
+class SharedPreferences {
+  static getInstance() {}
+  
+  remove(String key) {}
+  
+  setString(String key, String value) {}
+  
+  Future<String?> getString(String key) {}
 }
