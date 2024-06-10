@@ -23,46 +23,34 @@ class Sensing {
   // String? get deviceRoleName => _status?.primaryDeviceStatus?.device.roleName;
 
   SmartphoneDeploymentController? get controller => (study != null)
-    ? SmartPhoneClientManager().getStudyRuntime(study!)
-    : null;
+      ? SmartPhoneClientManager().getStudyRuntime(study!)
+      : null;
 
   Stream<Measurement> get measurements =>
-    controller?.measurements ?? const Stream.empty();
-  
+      controller?.measurements ?? const Stream.empty();
+
   List<Probe> get runningProbes =>
-    (controller != null) ? controller!.executor.probes : [];
-  
+      (controller != null) ? controller!.executor.probes : [];
+
   List<DeviceManager> get availableDevices =>
-    SmartPhoneClientManager().deviceController.devices.values.toList();
-  
+      SmartPhoneClientManager().deviceController.devices.values.toList();
+
   Future<void> initialize() async {
-    info('Initialising $runtimeType - mode: ${bloc.deploymentMode}');
+    info('Initialising $runtimeType');
 
-    switch (bloc.deploymentMode) {
-      case DeploymentMode.local:
-        deploymentService = SmartphoneDeploymentService();
+    deploymentService = SmartphoneDeploymentService();
 
-        StudyProtocol protocol = (await LocalProtocolManager().getStudyProtocol('')) as StudyProtocol;
+    StudyProtocol protocol =
+        (await LocalProtocolManager().getStudyProtocol('')) as StudyProtocol;
 
-        _status = (await SmartphoneDeploymentService().createStudyDeployment(
-          protocol,
-          [],
-          bloc.studyDeploymentId,
-          )) as StudyDeployment?;
-      
-        bloc.studyDeploymentId = _status?.studyDeploymentId;
-        // bloc.deviceRoleName = _status?.primaryDeviceStatus?.device.roleName;
+    _status = (await SmartphoneDeploymentService().createStudyDeployment(
+      protocol,
+      [],
+      bloc.studyDeploymentId,
+    )) as StudyDeployment?;
 
-        break;
-
-      case DeploymentMode.production:
-      case DeploymentMode.staging:
-      case DeploymentMode.development:
-        CarpDeploymentService().configureFrom(CarpService());
-        deploymentService = CarpDeploymentService();
-
-        break;
-    }
+    bloc.studyDeploymentId = _status?.studyDeploymentId;
+    // bloc.deviceRoleName = _status?.primaryDeviceStatus?.device.roleName;
 
     await SmartPhoneClientManager().configure(
       deploymentService: deploymentService,
@@ -72,15 +60,15 @@ class Sensing {
     study = await SmartPhoneClientManager().addStudy(
       bloc.studyDeploymentId!,
       bloc.deviceRoleName!,
-      );
-    
+    );
+
     await controller?.tryDeployment(useCached: bloc.useCachedStudyDeployment);
     await controller?.configure();
 
     SmartPhoneClientManager()
-      .measurements
-      .listen((measurement) => print(toJsonString(measurement)));
-    
+        .measurements
+        .listen((measurement) => print(toJsonString(measurement)));
+
     info('$runtimeType initializsed');
   }
 }

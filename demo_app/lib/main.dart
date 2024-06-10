@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:digital_health_module/main.dart' as digital_health_module;
 
@@ -26,6 +27,10 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Digital Health Wrapper'),
     );
   }
+}
+
+void startStudy(String? id){
+  debugPrint('Study selected: $id');
 }
 
 enum IconLabel {
@@ -90,7 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
             if (selectedIcon != null)
             Row(mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              OutlinedButton(onPressed: () {debugPrint('Study selected: ${selectedIcon?.label}');}, child: const Text('Begin Study'))
+              const SizedBox(height: 30),
+              CupertinoButton.filled(
+                onPressed: () {startStudy(selectedIcon?.label);},
+                child: const Text('Begin Study')),
             ],
             ),
           ],

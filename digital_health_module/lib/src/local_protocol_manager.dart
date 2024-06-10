@@ -13,11 +13,7 @@ class LocalProtocolManager implements StudyProtocolManager {
       description: "TestDescription",
       purpose: "Testing");
 
-    DataEndPoint get dataEndPoint => (bloc.deploymentMode == DeploymentMode.local)
-      ? SQLiteDataEndPoint()
-      : CarpDataEndPoint(
-        uploadMethod: CarpUploadMethod.stream,
-      )..dataFormat = bloc.dataFormat;
+    DataEndPoint get dataEndPoint => SQLiteDataEndPoint()..dataFormat = bloc.dataFormat;
     
     SmartphoneStudyProtocol getSingleUserStudyProtocol(String name) {
       SmartphoneStudyProtocol protocol = SmartphoneStudyProtocol(

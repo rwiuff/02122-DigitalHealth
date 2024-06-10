@@ -17,9 +17,6 @@ class SensingBLoC {
   /// The [Sensing] layer used in the app.
   Sensing get sensing => Sensing();
 
-  /// What kind of deployment are we running? Default is local.
-  DeploymentMode deploymentMode = DeploymentMode.local;
-
   /// The study id for the currently running deployment.
   /// Returns the study id cached locally on the phone (if available).
   /// Returns `null` if no study is deployed (yet).
@@ -91,7 +88,6 @@ class SensingBLoC {
 
   /// Initialize the BLoC.
   Future<void> initialize({
-    DeploymentMode deploymentMode = DeploymentMode.local,
     String? deploymentId,
     String dataFormat = NameSpace.CARP,
     bool useCachedStudyDeployment = true,
@@ -99,7 +95,6 @@ class SensingBLoC {
   }) async {
     await Settings().init();
     Settings().debugLevel = DebugLevel.debug;
-    this.deploymentMode = deploymentMode;
     if (deploymentId != null) studyDeploymentId = deploymentId;
     this.dataFormat = dataFormat;
     _resumeSensingOnStartup = resumeSensingOnStartup;
@@ -131,19 +126,4 @@ class SensingBLoC {
   /// Is sensing running, i.e. has the study executor been started?
   bool get isRunning =>
       SmartPhoneClientManager().state == ClientManagerState.started;
-}
-
-/// How to deploy a study.
-enum DeploymentMode {
-  /// Use a local study protocol & deployment and store data locally on the phone.
-  local,
-
-  /// Use the CAWS production server to get the study deployment and store data.
-  production,
-
-  /// Use the CAWS staging server to get the study deployment and store data.
-  staging,
-
-  /// Use the CAWS development server to get the study deployment and store data.
-  development,
 }
