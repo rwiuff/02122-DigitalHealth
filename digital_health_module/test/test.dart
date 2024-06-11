@@ -2,6 +2,7 @@
 
 library digital_health_module;
 
+import 'package:carp_core/carp_core.dart';
 import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:digital_health_module/main.dart';
@@ -23,17 +24,19 @@ void main() {
 
   test('Start Study', () async {
     await startStudy();
-    
+    SmartPhoneClientManager().state.toString();
     
   });
 
   test('Stop Study', () async {
     await stopStudy();
-    
+    SmartPhoneClientManager().state.toString();
+
   });
 
   test('Dispose Study', () async {
     await disposeStudy();
+    SmartPhoneClientManager().state.toString();
     
   });
 }
