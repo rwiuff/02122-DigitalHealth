@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:package_mvp/package_mvp.dart';
 import 'package:package_mvp/src/sensing.dart';
 
@@ -15,7 +14,9 @@ void main() {
 //test For sensing.dart
 
 test('initialize', () async {
-    
+    final sensor = Sensing();
+    sensor.initialize();
+    expect(sensor.isInit, true);
   });
 
 
