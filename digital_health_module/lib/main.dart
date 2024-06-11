@@ -5,11 +5,9 @@ library digital_health_module;
 import 'package:carp_core/carp_core.dart';
 import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 import 'package:carp_health_package/health_package.dart';
-import 'package:carp_serializable/carp_serializable.dart';
-import 'package:carp_backend/carp_backend.dart';
-// import 'package:carp_webservices/carp_auth/carp_auth.dart';
-// import 'package:carp_webservices/carp_services/carp_services.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:carp_serializable/carp_serializable.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 // part 'src/local_protocol_manager.dart';
 // part 'src/backend.dart';
@@ -18,6 +16,8 @@ import 'package:flutter/cupertino.dart';
 part 'src/study_bloc.dart';
 
 Future initializeModule() async {
+  await Permission.activityRecognition.request();
+  await Permission.location.request();
   WidgetsFlutterBinding.ensureInitialized();
   CarpMobileSensing.ensureInitialized();
 

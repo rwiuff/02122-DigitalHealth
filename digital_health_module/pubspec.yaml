@@ -1,5 +1,5 @@
 name: digital_health_module
-description: "A new Flutter module project."
+description: "Digital Health Module"
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -28,10 +28,10 @@ dependencies:
   carp_core: ^1.4.1
   carp_mobile_sensing: ^1.4.7
   carp_serializable: ^1.1.1
-  carp_backend: ^1.4.1
-  carp_webservices: ^3.0.1
-  health: ^9.0.1
-  carp_context_package: ^1.5.0
+  permission_handler: ^11.3.1
+  # carp_context_package: ^1.5.0
+  # carp_backend: ^1.4.1
+  # carp_webservices: ^3.0.1
 
 dev_dependencies:
   flutter_test:

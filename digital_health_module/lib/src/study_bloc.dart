@@ -4,6 +4,7 @@ class StudyBLoC {
   final phone = Smartphone();
   late SmartphoneStudyProtocol protocol;
   Future<void> initialise() async {
+    SamplingPackageRegistry().register(HealthSamplingPackage());
     protocol = SmartphoneStudyProtocol(
       name: 'Test Protocol',
       dataEndPoint: SQLiteDataEndPoint(),
