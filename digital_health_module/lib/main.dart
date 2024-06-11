@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 library digital_health_module;
 
 import 'package:carp_core/carp_core.dart';
