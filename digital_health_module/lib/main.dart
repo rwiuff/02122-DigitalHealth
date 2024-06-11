@@ -9,19 +9,32 @@ import 'package:carp_backend/carp_backend.dart';
 // import 'package:carp_webservices/carp_services/carp_services.dart';
 import 'package:flutter/cupertino.dart';
 
-part 'src/local_protocol_manager.dart';
+// part 'src/local_protocol_manager.dart';
 // part 'src/backend.dart';
-part 'src/sensing.dart';
-part 'src/sensing_bloc.dart';
+// part 'src/sensing.dart';
+// part 'src/sensing_bloc.dart';
+part 'src/study_bloc.dart';
 
 Future initializeModule() async {
   WidgetsFlutterBinding.ensureInitialized();
   CarpMobileSensing.ensureInitialized();
 
-  await bloc.initialize(
-    useCachedStudyDeployment: false,
-    resumeSensingOnStartup: false,
+  await bloc.initialise(
+
   );
 }
 
-final bloc = SensingBLoC();
+Future setStudy(String id) async {
+  debugPrint('Set Study: $id');
+  bloc.setStudy();
+}
+
+Future startStudy() async {
+  bloc.startStudy();
+}
+
+Future stopStudy() async {}
+
+Future disposeStudy() async {}
+
+final bloc = StudyBLoC();

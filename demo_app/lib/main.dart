@@ -31,6 +31,8 @@ class MyApp extends StatelessWidget {
 
 void startStudy(String? id){
   debugPrint('Study selected: $id');
+  digital_health_module.setStudy(id!);
+  digital_health_module.startStudy();
 }
 
 enum IconLabel {
