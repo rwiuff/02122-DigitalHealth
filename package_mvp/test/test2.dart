@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:package_mvp/src/carp_service.dart';
+import 'package:package_mvp/src/sensing_bloc.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SensingBLoC sensingBloc = SensingBLoC();
