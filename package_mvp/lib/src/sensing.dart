@@ -10,6 +10,7 @@ class Sensing {
   Sensing._();
 
   bool _isRunning = false;
+  bool _isDisposed = false;
 
   Future<void> initialize() async {
     debugPrint('Initializing Sensing - mode: ${CarpService().deploymentMode}');
@@ -22,6 +23,9 @@ class Sensing {
   }
 
   void start() {
+    if (_isDisposed) {
+      throw StateError('Cannot start a disposed sensor');
+    }
     _isRunning = true;
     debugPrint('Sensing started');
   }
@@ -33,6 +37,7 @@ class Sensing {
 
   void dispose() {
     _isRunning = false;
+    _isDisposed = true;
     debugPrint('Sensing disposed');
   }
 
