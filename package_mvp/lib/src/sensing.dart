@@ -11,6 +11,7 @@ class Sensing {
 
   bool _isRunning = false;
   bool _isDisposed = false;
+  bool _isInit = false;
 
   Future<void> initialize() async {
     debugPrint('Initializing Sensing - mode: ${CarpService().deploymentMode}');
@@ -20,6 +21,7 @@ class Sensing {
     CarpService().deviceRoleName = 'example_device_role_name';
 
     debugPrint('Sensing initialized with studyDeploymentId: ${CarpService().studyDeploymentId} and deviceRoleName: ${CarpService().deviceRoleName}');
+    _isInit = true;
   }
 
   void start() {
@@ -42,4 +44,6 @@ class Sensing {
   }
 
   bool get isRunning => _isRunning;
+  bool get isDisposed => _isDisposed;
+  bool get isInit => _isInit;
 }
