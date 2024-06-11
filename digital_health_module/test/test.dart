@@ -1,5 +1,4 @@
 library digital_health_module;
-import 'dart:js_interop_unsafe';
 
 import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 import 'package:flutter_test/flutter_test.dart';
