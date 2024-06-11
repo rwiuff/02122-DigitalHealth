@@ -102,5 +102,7 @@ class SharedPreferences {
   
   setString(String key, String value) {}
   
-  Future<String?> getString(String key) {}
+  Future<String?> getString(String key) {
+    throw getString(key);
+  }
 }
