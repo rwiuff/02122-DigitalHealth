@@ -8,6 +8,7 @@ import 'package:carp_health_package/health_package.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:carp_serializable/carp_serializable.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // part 'src/local_protocol_manager.dart';
 // part 'src/backend.dart';
@@ -18,6 +19,8 @@ part 'src/study_bloc.dart';
 Future initializeModule() async {
   await Permission.activityRecognition.request();
   await Permission.location.request();
+  // await Permission.scheduleExactAlarm.request();
+  // await AndroidFlutterLocalNotificationsPlugin.requestExactAlarmsPermission();
   WidgetsFlutterBinding.ensureInitialized();
   CarpMobileSensing.ensureInitialized();
 
