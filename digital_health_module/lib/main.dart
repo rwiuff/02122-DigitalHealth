@@ -16,17 +16,19 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // part 'src/sensing_bloc.dart';
 part 'src/study_bloc.dart';
 
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
 Future initializeModule() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestExactAlarmsPermission();
   await Permission.activityRecognition.request();
   await Permission.location.request();
-  // await Permission.scheduleExactAlarm.request();
-  // await AndroidFlutterLocalNotificationsPlugin.requestExactAlarmsPermission();
-  WidgetsFlutterBinding.ensureInitialized();
   CarpMobileSensing.ensureInitialized();
-
-  await bloc.initialise(
-
-  );
+  await bloc.initialise();
 }
 
 Future setStudy(String id) async {
