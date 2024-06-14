@@ -13,30 +13,28 @@ import 'package:mockito/mockito.dart';
 void main() {
   test('Initialize Module', () async {
     await initializeModule();
-    
+    expect(SmartPhoneClientManager().state.toString(), "created");
   });
 
   test('Set Study', () async {
-    int temp = SmartPhoneClientManager().studyCount;
     await setStudy('test_study_id');
-    expect(SmartPhoneClientManager().studyCount, temp+1);
+    expect(SmartPhoneClientManager().state.toString(), "configured");
   });
 
   test('Start Study', () async {
     await startStudy();
-    SmartPhoneClientManager().state.toString();
-    
+    expect(SmartPhoneClientManager().state.toString(), "started");
   });
 
   test('Stop Study', () async {
     await stopStudy();
-    SmartPhoneClientManager().state.toString();
+    expect(SmartPhoneClientManager().state.toString(), "stopped");
 
   });
 
   test('Dispose Study', () async {
     await disposeStudy();
-    SmartPhoneClientManager().state.toString();
+    expect(SmartPhoneClientManager().state.toString(), "disposed");
     
   });
 }
