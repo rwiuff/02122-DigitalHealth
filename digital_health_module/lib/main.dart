@@ -7,8 +7,9 @@ import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 import 'package:carp_health_package/health_package.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:carp_serializable/carp_serializable.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 // part 'src/local_protocol_manager.dart';
 // part 'src/backend.dart';
@@ -16,19 +17,25 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // part 'src/sensing_bloc.dart';
 part 'src/study_bloc.dart';
 
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-
 Future initializeModule() async {
   WidgetsFlutterBinding.ensureInitialized();
-  flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.requestExactAlarmsPermission();
-  await Permission.activityRecognition.request();
-  await Permission.location.request();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  debugPrint('Running initNoti');
+  const AndroidInitializationSettings initialisationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  const InitializationSettings initialisationSettings =
+      InitializationSettings(android: initialisationSettingsAndroid);
+  await flutterLocalNotificationsPlugin.initialize(initialisationSettings);
+  debugPrint('flutterLocalNofiPlgi initialised');
+  await requestPermissions();
   CarpMobileSensing.ensureInitialized();
   await bloc.initialise();
+}
+
+Future<void> requestPermissions() async{
+  await Permission.activityRecognition.request();
+  await Permission.location.request();
 }
 
 Future setStudy(String id) async {
