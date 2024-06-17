@@ -19,15 +19,6 @@ part 'src/study_bloc.dart';
 
 Future initializeModule() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  debugPrint('Running initNoti');
-  const AndroidInitializationSettings initialisationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
-  const InitializationSettings initialisationSettings =
-      InitializationSettings(android: initialisationSettingsAndroid);
-  await flutterLocalNotificationsPlugin.initialize(initialisationSettings);
-  debugPrint('flutterLocalNofiPlgi initialised');
   await requestPermissions();
   CarpMobileSensing.ensureInitialized();
   await bloc.initialise();
