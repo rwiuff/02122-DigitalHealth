@@ -22,6 +22,50 @@ class SQLiteDataEndPoint extends DataEndPoint {
   // Example method to configure the endpoint
   void configure() {
     // Implement any necessary configuration for the endpoint
-  }
+  } 
 }
 //TODO API med data
+
+
+
+
+
+
+/* @JsonSerializable(fieldRename: FieldRename.none, includeIfNull: false)
+abstract class DataEndPoint {
+  String get type;
+
+  Map<String, dynamic> toJson();
+  factory DataEndPoint.fromJson(Map<String, dynamic> json) {
+    switch (json['type']) {
+      case 'sqlite':
+        return SQLiteDataEndPoint.fromJson(json);
+      default:
+        throw UnsupportedError('Unsupported data endpoint type');
+    }
+  }
+}
+
+@JsonSerializable(fieldRename: FieldRename.none, includeIfNull: false)
+class SQLiteDataEndPoint implements DataEndPoint {
+  final String databaseName;
+
+  SQLiteDataEndPoint({this.databaseName = 'sensing_database'});
+
+  @override
+  String get type => 'sqlite';
+
+  @override
+  Map<String, dynamic> toJson() => _$SQLiteDataEndPointToJson(this);
+
+  factory SQLiteDataEndPoint.fromJson(Map<String, dynamic> json) => _$SQLiteDataEndPointFromJson(json);
+
+  Future<void> saveData(String data) async {
+    // Implement the logic to save data to SQLite
+  }
+
+  void configure() {
+    // Implement any necessary configuration for the endpoint
+  }
+}
+ */
