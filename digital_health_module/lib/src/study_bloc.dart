@@ -3,6 +3,7 @@ part of '../main.dart';
 class StudyBLoC {
   final phone = Smartphone();
   late SmartphoneStudyProtocol protocol;
+
   Future<void> initialise() async {
     SamplingPackageRegistry().register(HealthSamplingPackage());
     protocol = SmartphoneStudyProtocol(
@@ -16,11 +17,12 @@ class StudyBLoC {
 
   Future<void> setStudy() async {
     protocol.addTaskControl(
-        DelayedTrigger(delay: const Duration(seconds: 10)),
-        BackgroundTask(measures: [
-          Measure(type: SensorSamplingPackage.STEP_COUNT),
-        ]),
-        phone);
+      DelayedTrigger(delay: const Duration(seconds: 10)),
+      BackgroundTask(measures: [
+        Measure(type: SensorSamplingPackage.STEP_COUNT),
+      ]),
+      phone,
+    );
     SmartPhoneClientManager().addStudyProtocol(protocol);
     info('Study set');
   }

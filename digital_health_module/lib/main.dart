@@ -12,13 +12,15 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 //JSON import
-//import 'package:json_annotation/json_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 // part 'src/local_protocol_manager.dart';
 // part 'src/backend.dart';
 // part 'src/sensing.dart';
 // part 'src/sensing_bloc.dart';
 part 'src/study_bloc.dart';
+part 'src/data_endpoint.dart';
+
 
 Future initializeModule() async {
   WidgetsFlutterBinding.ensureInitialized();

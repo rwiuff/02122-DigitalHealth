@@ -4,34 +4,13 @@ part of '../main.dart';
 //https://github.com/cph-cachet/carp.sensing-flutter/wiki/5.-Extending-CARP-Mobile-Sensing
 
 // Define a base class for DataEndPoints
-abstract class DataEndPoint {
-  // Common properties and methods for all data endpoints
-}
 
-// Define the SQLiteDataEndPoint class that extends DataEndPoint
-class SQLiteDataEndPoint extends DataEndPoint {
-  final String databaseName;
+// import 'package:json_annotation/json_annotation.dart';
+// import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 
-  SQLiteDataEndPoint({this.databaseName = 'sensing_database'});
+// part 'data_endpoint.g.dart';
 
-  // Example method to save data (this needs actual implementation)
-  Future<void> saveData(String data) async {
-    // Implement the logic to save data to SQLite
-  }
-
-  // Example method to configure the endpoint
-  void configure() {
-    // Implement any necessary configuration for the endpoint
-  } 
-}
-//TODO API med data
-
-
-
-
-
-
-/* @JsonSerializable(fieldRename: FieldRename.none, includeIfNull: false)
+@JsonSerializable(fieldRename: FieldRename.none, includeIfNull: false)
 abstract class DataEndPoint {
   String get type;
 
@@ -68,4 +47,16 @@ class SQLiteDataEndPoint implements DataEndPoint {
     // Implement any necessary configuration for the endpoint
   }
 }
- */
+
+// JSON serialization functions
+SQLiteDataEndPoint _$SQLiteDataEndPointFromJson(Map<String, dynamic> json) {
+  return SQLiteDataEndPoint(
+    databaseName: json['databaseName'] as String? ?? 'sensing_database',
+  );
+}
+
+Map<String, dynamic> _$SQLiteDataEndPointToJson(SQLiteDataEndPoint instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'databaseName': instance.databaseName,
+    };
