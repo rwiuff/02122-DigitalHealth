@@ -11,6 +11,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
+//import 'package:json_annotation/json_annotation.dart';
+//import 'package:http/http.dart' as http;
+
 // part 'src/local_protocol_manager.dart';
 // part 'src/backend.dart';
 // part 'src/sensing.dart';

@@ -1,30 +1,27 @@
-// part of '../main.dart';
+part of '../main.dart';
 
-// //EXAMPLE WITH Memory 
-// //https://github.com/cph-cachet/carp.sensing-flutter/wiki/5.-Extending-CARP-Mobile-Sensing
+//EXAMPLE WITH Memory 
+//https://github.com/cph-cachet/carp.sensing-flutter/wiki/5.-Extending-CARP-Mobile-Sensing
 
-// /// Holds information about free memory on the phone.
-// @JsonSerializable(fieldRename: FieldRename.none, includeIfNull: false)
-// class FreeMemory extends Data {
-//   static const dataType = DeviceSamplingPackage.FREE_MEMORY;
+// Define a base class for DataEndPoints
+abstract class DataEndPoint {
+  // Common properties and methods for all data endpoints
+}
 
-//   /// Amount of free physical memory in bytes.
-//   int? freePhysicalMemory;
+// Define the SQLiteDataEndPoint class that extends DataEndPoint
+class SQLiteDataEndPoint extends DataEndPoint {
+  final String databaseName;
 
-//   /// Amount of free virtual memory in bytes.
-//   int? freeVirtualMemory;
+  SQLiteDataEndPoint({this.databaseName = 'sensing_database'});
 
-//   FreeMemory([this.freePhysicalMemory, this.freeVirtualMemory]) : super();
+  // Example method to save data (this needs actual implementation)
+  Future<void> saveData(String data) async {
+    // Implement the logic to save data to SQLite
+  }
 
-//   @override
-//   Function get fromJsonFunction => _$FreeMemoryFromJson;
-//   factory FreeMemory.fromJson(Map<String, dynamic> json) =>
-//       FromJsonFactory().fromJson(json) as FreeMemory;
-//   @override
-//   Map<String, dynamic> toJson() => _$FreeMemoryToJson(this);
-
-//   @override
-//   String toString() =>
-//       '${super.toString()}, physical: $freePhysicalMemory, virtual: $freeVirtualMemory';
-// }
-// //TODO API med data
+  // Example method to configure the endpoint
+  void configure() {
+    // Implement any necessary configuration for the endpoint
+  }
+}
+//TODO API med data
