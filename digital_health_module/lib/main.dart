@@ -7,26 +7,31 @@ import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 import 'package:carp_health_package/health_package.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:carp_serializable/carp_serializable.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+
+//JSON import
+import 'package:json_annotation/json_annotation.dart';
 
 // part 'src/local_protocol_manager.dart';
 // part 'src/backend.dart';
 // part 'src/sensing.dart';
 // part 'src/sensing_bloc.dart';
 part 'src/study_bloc.dart';
+part 'src/data_endpoint.dart';
+
 
 Future initializeModule() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await requestPermissions();
+  CarpMobileSensing.ensureInitialized();
+  await bloc.initialise();
+}
+
+Future<void> requestPermissions() async{
   await Permission.activityRecognition.request();
   await Permission.location.request();
-  // await Permission.scheduleExactAlarm.request();
-  // await AndroidFlutterLocalNotificationsPlugin.requestExactAlarmsPermission();
-  WidgetsFlutterBinding.ensureInitialized();
-  CarpMobileSensing.ensureInitialized();
-
-  await bloc.initialise(
-
-  );
 }
 
 Future setStudy(String id) async {
