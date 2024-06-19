@@ -3,6 +3,7 @@ part of '../main.dart';
 class StudyBLoC {
   final phone = Smartphone();
   late SmartphoneStudyProtocol protocol;
+  final healthService = HealthService();
 
   Future<void> initialise() async {
     SamplingPackageRegistry().register(HealthSamplingPackage());
@@ -11,19 +12,20 @@ class StudyBLoC {
       dataEndPoint: SQLiteDataEndPoint(),
     );
     protocol.addPrimaryDevice(phone);
+    protocol.addConnectedDevice(healthService, phone);
     await SmartPhoneClientManager().configure();
     info('$runtimeType initialized');
   }
 
   Future<void> setStudy() async {
     protocol.addTaskControl(
-      DelayedTrigger(delay: const Duration(seconds: 10)),
-      BackgroundTask(measures: [
-        Measure(type: SensorSamplingPackage.STEP_COUNT),
-      ]),
-      phone,
-      Control.Start,
-    );
+        DelayedTrigger(delay: const Duration(seconds: 10)),
+        BackgroundTask(measures: [
+          HealthSamplingPackage.getHealthMeasure([
+            HealthDataType.STEPS,
+          ])
+        ]),
+        healthService);
     SmartPhoneClientManager().addStudyProtocol(protocol);
     info('Study set');
   }
@@ -38,7 +40,7 @@ class StudyBLoC {
 
   Future<void> stopStudy() async {
     SmartPhoneClientManager().stop();
-    info('Study stoped');
+    info('Study stopped');
   }
 
   Future<void> disposeStudy() async {

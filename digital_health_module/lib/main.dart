@@ -5,6 +5,7 @@ library digital_health_module;
 import 'package:carp_core/carp_core.dart';
 import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 import 'package:carp_health_package/health_package.dart';
+import 'package:health/health.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:carp_serializable/carp_serializable.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -21,7 +22,6 @@ import 'package:json_annotation/json_annotation.dart';
 part 'src/study_bloc.dart';
 part 'src/data_endpoint.dart';
 
-
 Future initializeModule() async {
   WidgetsFlutterBinding.ensureInitialized();
   await requestPermissions();
@@ -29,13 +29,13 @@ Future initializeModule() async {
   await bloc.initialise();
 }
 
-Future<void> requestPermissions() async{
+Future<void> requestPermissions() async {
   await Permission.activityRecognition.request();
   await Permission.location.request();
 }
 
 Future setStudy(String id) async {
-  debugPrint('Set Study: $id');
+  info('Set Study: $id');
   bloc.setStudy();
 }
 

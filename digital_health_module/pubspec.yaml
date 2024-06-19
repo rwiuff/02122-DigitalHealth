@@ -18,7 +18,7 @@ description: "Digital Health Module"
 version: 1.0.0+1
 
 environment:
-  sdk: 3.3.4
+  sdk: ^3.3.4
 
 dependencies:
   flutter:
@@ -27,6 +27,7 @@ dependencies:
   carp_health_package: ^2.9.4
   carp_core: ^1.4.1
   carp_mobile_sensing: ^1.4.7
+  health: 9.0.1
   carp_serializable: ^1.1.1
   permission_handler: ^11.3.1
   flutter_local_notifications: ^17.1.2
@@ -41,7 +42,7 @@ dev_dependencies:
     sdk: flutter
   mockito: ^5.0.17
   build_runner: ^2.1.7
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
   json_serializable: ^6.1.1
 
 # For information on the generic Dart part of this file, see the
