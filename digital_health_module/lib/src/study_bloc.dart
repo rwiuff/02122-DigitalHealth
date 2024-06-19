@@ -22,6 +22,7 @@ class StudyBLoC {
         Measure(type: SensorSamplingPackage.STEP_COUNT),
       ]),
       phone,
+      Control.Start,
     );
     SmartPhoneClientManager().addStudyProtocol(protocol);
     info('Study set');
@@ -33,5 +34,15 @@ class StudyBLoC {
     SmartPhoneClientManager()
         .measurements
         .listen((measurement) => debugPrint(toJsonString(measurement)));
+  }
+
+  Future<void> stopStudy() async {
+    SmartPhoneClientManager().stop();
+    info('Study stoped');
+  }
+
+  Future<void> disposeStudy() async {
+    SmartPhoneClientManager().dispose();
+    info('Study disposed');
   }
 }

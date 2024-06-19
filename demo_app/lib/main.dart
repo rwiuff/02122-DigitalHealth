@@ -26,10 +26,24 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void startStudy(String? id) {
+void setStudy(String? id) {
   debugPrint('Study selected: $id');
   digital_health_module.setStudy(id!);
+}
+
+void startStudy() {
+  debugPrint('Asking DHM to start study');
   digital_health_module.startStudy();
+}
+
+void stopStudy() {
+  debugPrint('Asking DHM to stop study');
+  digital_health_module.stopStudy();
+}
+
+void disposeStudy() {
+  debugPrint('Asking DHM to dispose study');
+  digital_health_module.disposeStudy();
 }
 
 enum IconLabel {
@@ -92,15 +106,33 @@ class _MyHomePageState extends State<MyHomePage> {
               ).toList(),
             ),
             if (selectedIcon != null)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   const SizedBox(height: 30),
                   CupertinoButton.filled(
                       onPressed: () {
-                        startStudy(selectedIcon?.label);
+                        setStudy(selectedIcon?.label);
                       },
-                      child: const Text('Begin Study')),
+                      child: const Text('Set Study')),
+                  const SizedBox(height: 30),
+                  CupertinoButton.filled(
+                      onPressed: () {
+                        startStudy();
+                      },
+                      child: const Text('Start Study')),
+                  const SizedBox(height: 30),
+                  CupertinoButton.filled(
+                      onPressed: () {
+                        stopStudy();
+                      },
+                      child: const Text('Stop Study')),
+                  const SizedBox(height: 30),
+                  CupertinoButton.filled(
+                      onPressed: () {
+                        disposeStudy();
+                      },
+                      child: const Text('Dispose Study')),
                 ],
               ),
           ],
