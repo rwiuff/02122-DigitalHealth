@@ -29,12 +29,10 @@ void main() {
   test('Stop Study', () async {
     await stopStudy();
     expect(SmartPhoneClientManager().state.toString(), "stopped");
-
   });
 
   test('Dispose Study', () async {
     await disposeStudy();
     expect(SmartPhoneClientManager().state.toString(), "disposed");
-    
   });
 }
