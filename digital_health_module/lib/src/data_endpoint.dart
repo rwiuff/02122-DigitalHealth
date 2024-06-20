@@ -1,14 +1,9 @@
+// src/data_endpoint.dart
 part of '../main.dart';
 
 //EXAMPLE WITH Memory 
 //https://github.com/cph-cachet/carp.sensing-flutter/wiki/5.-Extending-CARP-Mobile-Sensing
 
-// Define a base class for DataEndPoints
-
-// import 'package:json_annotation/json_annotation.dart';
-// import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
-
-// part 'data_endpoint.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.none, includeIfNull: false)
 abstract class DataEndPoint {
