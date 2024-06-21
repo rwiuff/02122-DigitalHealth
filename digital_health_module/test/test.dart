@@ -17,7 +17,7 @@ void main() {
   });
 
   test('Set Study', () async {
-    await setStudy('test_study_id');
+    await addStudy('test_study_id');
     expect(SmartPhoneClientManager().state.toString(), "configured");
   });
 
