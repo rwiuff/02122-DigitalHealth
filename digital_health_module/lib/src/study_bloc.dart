@@ -1,58 +1,47 @@
 part of '../main.dart';
 
 class StudyBLoC {
-  final phone = Smartphone();
-  late SmartphoneStudyProtocol protocol;
-  final client = SmartPhoneClientManager();
+  final deploymentService = SmartphoneDeploymentService();
+  Study? study;
+
   final healthService = HealthService();
-  late SmartphoneDeploymentController controller;
 
   Future<void> initialise() async {
     SamplingPackageRegistry().register(HealthSamplingPackage());
-    for (var package in SamplingPackageRegistry().packages) {
-      info('Registered package ${package.runtimeType}');
-    }
-    protocol = SmartphoneStudyProtocol(
-      name: 'Test Protocol',
-      dataEndPoint: SQLiteDataEndPoint(),
-    );
-    protocol.addPrimaryDevice(phone);
-    protocol.addConnectedDevice(healthService, phone);
-    await client.configure();
+    HealthServiceManager().requestPermissions();
+    await Settings().init();
     info('$runtimeType initialized');
   }
 
-  Future<void> setStudy() async {
-    protocol.addTaskControl(
-        PeriodicTrigger(period: const Duration(minutes: 2)),
-        BackgroundTask(measures: [
-          HealthSamplingPackage.getHealthMeasure([
-            HealthDataType.STEPS,
-          ])
-        ]),
-        healthService,
-        Control.Start);
-    Study study = await client.addStudyProtocol(protocol);
-    controller = client.getStudyRuntime(study)!;
-    info('Study set');
+  Future<void> addStudy() async {
+    StudyProtocol protocol = (await LocalStudyProtocolManager()
+        .getStudyProtocol('')) as StudyProtocol;
+    await SmartphoneDeploymentService().createStudyDeployment(protocol);
+    await SmartPhoneClientManager().configure(
+        deploymentService: deploymentService, askForPermissions: true);
+    study = await SmartPhoneClientManager().addStudyProtocol(protocol);
+    info('Study added');
   }
 
   Future<void> startStudy() async {
-    HealthServiceManager().requestPermissions();
-    controller.start();
+    SmartPhoneClientManager().notificationController?.createNotification(
+        title: 'Data Collection Started', body: 'Data sampling now running');
+    SmartPhoneClientManager().start();
+    SmartPhoneClientManager().measurements.listen((measurement) => debugPrint(toJsonString(measurement)));
     info('Study started');
-    controller
-        .measurements
-        .listen((measurement) => debugPrint(toJsonString(measurement)));
   }
 
-  Future<void> stopStudy() async {
-    controller.stop();
+  void stopStudy() {
+    SmartPhoneClientManager().notificationController?.createNotification(
+          title: 'Data Collection Stopped',
+          body: 'Data sampling is no longet running',
+        );
+    SmartPhoneClientManager().stop();
     info('Study stopped');
   }
 
-  Future<void> disposeStudy() async {
-    controller.dispose();
+  void disposeStudy() {
+    SmartPhoneClientManager().dispose();
     info('Study disposed');
   }
 }

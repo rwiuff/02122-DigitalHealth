@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void setStudy(String? id) {
+void addStudy(String? id) {
   debugPrint('Study selected: $id');
-  digital_health_module.setStudy(id!);
+  digital_health_module.addStudy(id!);
 }
 
 void startStudy() {
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(height: 30),
                   CupertinoButton.filled(
                       onPressed: () {
-                        setStudy(selectedIcon?.label);
+                        addStudy(selectedIcon?.label);
                       },
                       child: const Text('Set Study')),
                   const SizedBox(height: 30),
