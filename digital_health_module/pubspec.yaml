@@ -33,6 +33,7 @@ dependencies:
   flutter_local_notifications: ^17.1.2
   provider: 6.1.2
   json_annotation: ^4.8.0
+  carp_context_package: ^1.7.0
   # carp_context_package: ^1.5.0
   # carp_backend: ^1.4.1
   # carp_webservices: ^3.0.1

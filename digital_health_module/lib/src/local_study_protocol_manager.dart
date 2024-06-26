@@ -27,20 +27,21 @@ class LocalStudyProtocolManager implements StudyProtocolManager {
 
     Smartphone phone = Smartphone();
     protocol.addPrimaryDevice(phone);
-
-    protocol.addConnectedDevice(bloc.healthService, phone);
+    final healthService = HealthService();
+    protocol.addConnectedDevice(healthService, phone);
 
     protocol.addTaskControl(
         PeriodicTrigger(period: const Duration(minutes: 2)),
         BackgroundTask(measures: [
           HealthSamplingPackage.getHealthMeasure([HealthDataType.STEPS])
         ]),
-        bloc.healthService);
+        healthService);
     return protocol;
   }
 
   @override
-  Future<bool> saveStudyProtocol(String id, SmartphoneStudyProtocol protocol) async {
+  Future<bool> saveStudyProtocol(
+      String id, SmartphoneStudyProtocol protocol) async {
     throw UnimplementedError();
   }
 }

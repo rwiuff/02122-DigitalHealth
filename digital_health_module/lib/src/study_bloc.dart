@@ -4,11 +4,9 @@ class StudyBLoC {
   final deploymentService = SmartphoneDeploymentService();
   Study? study;
 
-  final healthService = HealthService();
-
   Future<void> initialise() async {
     SamplingPackageRegistry().register(HealthSamplingPackage());
-    HealthServiceManager().requestPermissions();
+    SamplingPackageRegistry().register(ContextSamplingPackage());
     await Settings().init();
     info('$runtimeType initialized');
   }
@@ -20,6 +18,7 @@ class StudyBLoC {
     await SmartPhoneClientManager().configure(
         deploymentService: deploymentService, askForPermissions: true);
     study = await SmartPhoneClientManager().addStudyProtocol(protocol);
+    SmartPhoneClientManager().deviceController.registerAllAvailableDevices();
     info('Study added');
   }
 
@@ -27,6 +26,9 @@ class StudyBLoC {
     SmartPhoneClientManager().notificationController?.createNotification(
         title: 'Data Collection Started', body: 'Data sampling now running');
     SmartPhoneClientManager().start();
+    // HealthServiceManager().stopHeartbeatMonitoring();
+    // HealthServiceManager().requestPermissions();
+    // HealthServiceManager().connect();
     SmartPhoneClientManager().measurements.listen((measurement) => debugPrint(toJsonString(measurement)));
     info('Study started');
   }

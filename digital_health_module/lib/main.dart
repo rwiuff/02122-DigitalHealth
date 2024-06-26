@@ -5,6 +5,7 @@ library digital_health_module;
 import 'dart:convert';
 
 import 'package:carp_core/carp_core.dart';
+import 'package:carp_context_package/carp_context_package.dart';
 import 'package:carp_mobile_sensing/carp_mobile_sensing.dart';
 import 'package:carp_health_package/health_package.dart';
 import 'package:flutter/widgets.dart';
@@ -32,6 +33,7 @@ Future initializeModule() async {
 Future<void> requestPermissions() async {
   await Permission.activityRecognition.request();
   await Permission.location.request();
+  await HealthServiceManager().requestPermissions();
 }
 
 Future addStudy(String id) async {
@@ -43,8 +45,12 @@ Future startStudy() async {
   bloc.startStudy();
 }
 
-Future stopStudy() async {}
+Future stopStudy() async {
+  bloc.stopStudy();
+}
 
-Future disposeStudy() async {}
+Future disposeStudy() async {
+  bloc.disposeStudy();
+}
 
 final bloc = StudyBLoC();

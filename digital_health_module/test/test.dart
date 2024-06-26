@@ -16,7 +16,11 @@ void main() {
     expect(SmartPhoneClientManager().state.toString(), "created");
   });
 
+<<<<<<< HEAD
   test('Add Study', () async {
+=======
+  test('Set Study', () async {
+>>>>>>> b57b8958a65ab1d655b7b48dd9c5c31b50d1c085
     await addStudy('test_study_id');
     expect(SmartPhoneClientManager().state.toString(), "configured");
   });
